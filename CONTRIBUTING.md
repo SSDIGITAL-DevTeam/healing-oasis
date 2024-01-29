@@ -7,11 +7,11 @@ This is step by step how you can contribute to this project.
 3. Create a new branch from `dev` branch.
 4. Make changes, and commit your changes.
 5. Push to your remote repository.
-6. Make a pull request.
+6. Make a pull request to `SSDigital-DevTeam/healing-oasis:dev`.
 
 ## Commit Messages
 
-Please make your commit message as descriptive as possible. We recommend you to use [semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716).  
+Please make your commit message as descriptive as possible. We recommend you to use [semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716).
 
 ## Testing
 
