@@ -3,17 +3,197 @@ info:
   title: Healing Oasis API Specification
   version: '1.0'
 servers:
-  - url: http://127.0.0.1:8000/api/v1
+  - url: http://127.0.0.1:8000/api/v1/back-office
 paths:
-  /:
-    get:
+  /auth/login:
+    post:
       tags:
-        - Example
-      summary: Example
-      description: Example
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  default: john@example.com
+                password:
+                  type: string
+                  default: password
       responses:
         200:
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+                  token:
+                    type: string
+                    default: '{token}'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: The provided credentials do not match our records.
+  /auth/logout:
+    post:
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      responses:
+        204:
+          $ref: '#/components/responses/204'
+        401:
+          $ref: '#/components/responses/401'
+  /auth/me:
+    get:
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+        401:
+          $ref: '#/components/responses/401'
+  /auth/forgot-password:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  default: 'johndoe@healingoasis.com.sg'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: 'Please check your email at johndoe@carchoice.com.'
+  /auth/validate-otp:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - otp
+              properties:
+                otp:
+                  type: string
+                  default: '123456'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+  /auth/reset-password/{id}:
+    post:
+      tags:
+        - Authentication
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: User ID
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - password
+                - password_confirmation
+              properties:
+                password:
+                  type: string
+                  default: 'password'
+                password_confirmation:
+                  type: string
+                  default: 'password'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: 'Password reset successfully.'
+        404:
+          $ref: '#/components/responses/404'
+  /auth/refresh-token:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - refresh_token
+              properties:
+                refresh_token:
+                  type: string
+                  default: '{refresh_token}'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    default: '{token}'
+        401:
+          $ref: '#/components/responses/401'
 
 components:
   securitySchemes:
