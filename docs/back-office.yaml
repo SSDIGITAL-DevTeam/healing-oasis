@@ -594,6 +594,15 @@ components:
         validity_period:
           type: number
           default: 20
+        maximum_discount:
+          type: number
+          default: 100
+        minimum_purchase:
+          type: number
+          default: 100
+        price:
+          type: number
+          default: 100
         formatted_amount:
           type: string
           default: 'S$10'
