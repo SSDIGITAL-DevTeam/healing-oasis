@@ -10,7 +10,11 @@
     }
 
     h1 {
-        @apply text-2xl font-bold lg:text-3xl;
+        @apply text-2xl font-bold md:text-4xl lg:text-5xl;
+    }
+
+    h2 {
+        @apply text-3xl font-bold md:text-3xl lg:text-4xl;
     }
 }
 
