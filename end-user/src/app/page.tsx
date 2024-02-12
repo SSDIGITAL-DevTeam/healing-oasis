@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
             {/* hero section */}
             <header className='relative'>
                 <div className='h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem]'>
-                    <div className='container flex h-full flex-col items-center justify-center gap-y-12 md:items-start'>
+                    <div className='container flex h-full flex-col items-center justify-center gap-y-12 pb-8 md:items-start'>
                         <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
                             Revitalize Your Mind, Body, and Spirit with Spa & Massage Treatments
                         </h1>
@@ -33,7 +33,7 @@ export default function Home(): JSX.Element {
                     </div>
 
                     <div className='absolute bottom-12 right-0 ml-auto max-w-xs md:max-w-xl xl:max-w-2xl'>
-                        <Carousel className='w-full'>
+                        <Carousel className='relative w-full'>
                             <CarouselContent>
                                 {categories[0].services.map((service: Service, index: number) => (
                                     <CarouselItem className='md:basis-1/2 md:p-4' key={`review-${index}`}>
@@ -49,6 +49,10 @@ export default function Home(): JSX.Element {
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
+
+                            <CarouselPrevious className='border-none text-primary lg:scale-80' />
+
+                            <CarouselNext className='hidden border-none text-primary lg:flex lg:scale-80' />
                         </Carousel>
                     </div>
                 </div>
@@ -59,9 +63,7 @@ export default function Home(): JSX.Element {
             <section id='/about-us' className='py-8'>
                 <div className='container p-6 sm:p-8'>
                     <header className='mb-4'>
-                        <h2 className='text-center text-2xl font-semibold text-primary sm:text-4xl md:hidden'>
-                            About Us
-                        </h2>
+                        <h2 className='text-center font-semibold text-primary md:hidden'>About Us</h2>
                     </header>
 
                     <div className='flex flex-col gap-6 text-primary sm:gap-8 md:flex-row md:items-center lg:gap-16'>
@@ -70,7 +72,7 @@ export default function Home(): JSX.Element {
                         {/* content */}
                         <div className='space-y-6 text-center md:text-left lg:w-3/5 lg:space-y-12'>
                             <header className=''>
-                                <h2 className='hidden text-4xl font-semibold md:block lg:text-5xl'>About Us</h2>
+                                <h2 className='hidden font-semibold md:block'>About Us</h2>
                             </header>
 
                             <p className='md:text-lg lg:text-xl xl:text-2xl'>

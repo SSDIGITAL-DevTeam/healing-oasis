@@ -7,6 +7,7 @@ import { NavLink } from '@/types'
 import AssetPhone from '@/assets/LandingPage/svg/asset-phone-footer.svg'
 import AssetMail from '@/assets/LandingPage/svg/asset-mail-footer.svg'
 import AssetAddress from '@/assets/LandingPage/svg/asset-map-footer.svg'
+import ScrollSpy from '../ScrollToTop/ScrollSpy'
 
 export default function LandingPageFooter(): JSX.Element {
     return (
@@ -24,7 +25,7 @@ export default function LandingPageFooter(): JSX.Element {
                     </div>
 
                     <Button className='w-44 lg:w-max' size='lg' color='secondary' radius='full'>
-                        Book Now
+                        <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
                     </Button>
                 </div>
 
