@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
             {/* hero section */}
             <header className='relative'>
                 <div className='h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem]'>
-                    <div className='container flex h-full flex-col items-center justify-center gap-y-8 md:items-start'>
+                    <div className='container flex h-full flex-col items-center justify-center gap-y-12 md:items-start'>
                         <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
                             Revitalize Your Mind, Body, and Spirit with Spa & Massage Treatments
                         </h1>
