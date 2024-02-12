@@ -20,9 +20,9 @@ const faq: Faq[] = [
             'Joining Healing Oasis membership comes at a cost of $89, and in return, you gain access to services and products worth $169. This membership provides exclusive access to special offers, discounts, and other unique benefits. So, in addition to experiencing an exceptional spa journey, you will also enjoy exclusive perks as our member.',
     },
     {
-        title: 'How can I take advantage of the Healing Oasis membership offers?',
+        title: 'What should I expect during a spa massage session?',
         content:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt et vitae magni qui modi ipsum minus aliquam corporis, nulla dolore ducimus incidunt repellendus officia necessitatibus sit, consectetur asperiores illum quia!',
+            "During a spa massage session, you can expect a tranquil environment, soothing music, and a licensed massage therapist who will discuss your needs and preferences before the session begins. You'll be provided with privacy to undress to your comfort level and lie on a massage table, draped with sheets or towels. The therapist will use various techniques to address your specific concerns and promote relaxation.",
     },
 ]
 

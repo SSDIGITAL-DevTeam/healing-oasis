@@ -11,19 +11,52 @@ import { Review, reviews } from '@/data/reviews'
 import { Advantage, advantages } from '@/data/advantages'
 import AdvantageCard from '@/components/Cards/LandingPage/AdvantageCard'
 import CategoryCard from '@/components/Cards/LandingPage/CategoryCard'
-import { Category, categories } from '@/data/categories'
+import { Category, Service, categories } from '@/data/categories'
+import AssetOurMission1 from '@/assets/LandingPage/webp/asset-our-mission-1.webp'
+import Image from 'next/image'
+import ScrollSpy from '@/components/ScrollToTop/ScrollSpy'
 
 export default function Home(): JSX.Element {
     return (
         <main>
             {/* hero section */}
-            <header className='container mt-4 w-full p-6 sm:p-8 xl:mt-8'>
-                <div className='h-screen max-h-[45rem] rounded-xl bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat'></div>
+            <header className='relative'>
+                <div className='h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem]'>
+                    <div className='container flex h-full flex-col items-center justify-center gap-y-8 md:items-start'>
+                        <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
+                            Revitalize Your Mind, Body, and Spirit with Spa & Massage Treatments
+                        </h1>
+
+                        <Button className='text-light' size='lg' radius='full' variant='bordered'>
+                            <ScrollSpy to='/contact-us'>Schedule Appointment</ScrollSpy>
+                        </Button>
+                    </div>
+
+                    <div className='absolute bottom-12 right-0 ml-auto max-w-xs md:max-w-xl xl:max-w-2xl'>
+                        <Carousel className='w-full'>
+                            <CarouselContent>
+                                {categories[0].services.map((service: Service, index: number) => (
+                                    <CarouselItem className='md:basis-1/2 md:p-4' key={`review-${index}`}>
+                                        <div className='flex items-center gap-x-4 rounded-lg bg-white/20 p-2 lg:p-2.5'>
+                                            <Image
+                                                src={service.asset!}
+                                                alt='Top 3 Best Selling'
+                                                className='h-24 w-72'
+                                            />
+
+                                            <p className='text-light'>{service.name}</p>
+                                        </div>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                        </Carousel>
+                    </div>
+                </div>
             </header>
             {/* end of hero section */}
 
             {/* about us section */}
-            <section className='py-8'>
+            <section id='/about-us' className='py-8'>
                 <div className='container p-6 sm:p-8'>
                     <header className='mb-4'>
                         <h2 className='text-center text-2xl font-semibold text-primary sm:text-4xl md:hidden'>
@@ -55,7 +88,7 @@ export default function Home(): JSX.Element {
                                 size='lg'
                                 radius='full'
                             >
-                                Book Now
+                                <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
                             </Button>
                         </div>
                     </div>
@@ -65,12 +98,57 @@ export default function Home(): JSX.Element {
 
             {/* our mission section */}
             <section className='py-8'>
-                <div className='container p-6 sm:p-8'></div>
+                <div className='container relative p-6 sm:p-8'>
+                    <Image
+                        className='absolute right-8 top-6 hidden w-72 rounded-full lg:block'
+                        src={AssetOurMission1}
+                        alt='Our Mission'
+                    />
+
+                    <header className='mb-8 space-y-4 text-center text-primary lg:max-w-lg lg:text-left'>
+                        <h2>Our Mission</h2>
+
+                        <p className='pt-8 md:text-xl'>
+                            Provide a team of highly trained professionals dedicated to delivering exceptional service
+                            that prioritizes your comfort at every step
+                        </p>
+
+                        <Button
+                            className='border border-primary bg-light font-medium text-primary'
+                            size='lg'
+                            radius='full'
+                        >
+                            <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
+                        </Button>
+                    </header>
+                </div>
+
+                <div className='flex w-full items-center bg-[url("/webp/asset-our-mission-bg.webp")] bg-cover bg-center bg-no-repeat p-8 py-20'>
+                    <div className='container flex flex-col items-center justify-center gap-y-6 md:flex-row md:gap-x-12 lg:justify-start'>
+                        <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
+                            <p className='text-4xl font-medium'>5K</p>
+
+                            <p className=''>Customer Rating</p>
+                        </div>
+
+                        <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
+                            <p className='text-4xl font-medium'>250+</p>
+
+                            <p className=''>Happy Customer</p>
+                        </div>
+
+                        <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
+                            <p className='text-4xl font-medium'>130+</p>
+
+                            <p className=''>Online Orders</p>
+                        </div>
+                    </div>
+                </div>
             </section>
             {/* end of our mission section */}
 
             {/* our expertise section */}
-            <section className='container p-4 py-8'>
+            <section id='/services' className='bg-highlight p-4 py-8 md:bg-transparent'>
                 <div className='container rounded-2xl bg-highlight p-6 sm:p-8'>
                     <header className='mb-8 space-y-4 text-center text-primary lg:text-left'>
                         <h2>Our Expertise</h2>
@@ -88,7 +166,7 @@ export default function Home(): JSX.Element {
                                     radius='full'
                                     size='lg'
                                 >
-                                    Book Now
+                                    <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
                                 </Button>
                             </div>
 
@@ -104,7 +182,7 @@ export default function Home(): JSX.Element {
                         <Carousel className='w-full'>
                             <CarouselContent>
                                 {categories.map((category: Category, index: number) => (
-                                    <CarouselItem className='md:basis-1/2 md:p-4 lg:basis-1/3' key={`review-${index}`}>
+                                    <CarouselItem className='md:basis-1/2 md:pl-4 lg:basis-1/3' key={`review-${index}`}>
                                         <CategoryCard category={category} />
                                     </CarouselItem>
                                 ))}
@@ -127,7 +205,7 @@ export default function Home(): JSX.Element {
             {/* end of our expertise section */}
 
             {/* uncover what sets us apart */}
-            <section className='py-8'>
+            <section id='/why-us' className='py-8'>
                 <div className='container p-6 sm:p-8'>
                     <header className='mb-8 space-y-4 text-center text-primary'>
                         <h2>Uncover What Sets Us Apart</h2>
@@ -137,6 +215,21 @@ export default function Home(): JSX.Element {
                         {advantages.map((advantage: Advantage, index: number) => (
                             <AdvantageCard advantage={advantage} key={`advantage-${index}`} />
                         ))}
+                    </div>
+
+                    <div className='mt-8 flex flex-col items-center space-y-4 text-center'>
+                        <p className='max-w-lg text-xl font-medium text-primary md:text-2xl'>
+                            Book your session today and embark on a journey of well-being with Healing Oasis.
+                        </p>
+
+                        <Button
+                            // className='border border-primary bg-light font-medium text-primary'
+                            color='primary'
+                            size='lg'
+                            radius='full'
+                        >
+                            <ScrollSpy to='/contact-us'>Book My Session</ScrollSpy>
+                        </Button>
                     </div>
                 </div>
             </section>
@@ -188,7 +281,7 @@ export default function Home(): JSX.Element {
             {/* end of our contact section */}
 
             {/* cta section */}
-            <section className='py-8'>
+            <section id='/contact-us' className='py-8'>
                 <div className='container px-6 sm:px-8'>
                     <div className='flex flex-col gap-x-8 gap-y-8 md:flex-row'>
                         <div className='flex w-full flex-col items-center justify-center gap-y-12 text-center xl:gap-y-16'>
@@ -198,18 +291,20 @@ export default function Home(): JSX.Element {
                                 Book Via Whatsapp
                             </h2>
 
-                            <Button
-                                className='text-2xl font-bold text-primary'
-                                aria-label='Healing Oasis WhatsApp Number'
-                                href='tel:+6597222727'
-                                target='_blank'
-                                size='lg'
-                                variant='bordered'
-                                radius='full'
-                                startContent={<img src={AssetWhatsapp.src} className='w-10' alt='WhatsApp Now' />}
-                            >
-                                +65 9722 2727
-                            </Button>
+                            <a href='https://wa.me/6597222727' target='_blank' rel='noopener noreferrer'>
+                                <Button
+                                    className='border border-primary py-6 text-2xl font-bold text-primary'
+                                    aria-label='Healing Oasis WhatsApp Number'
+                                    href='tel:+6597222727'
+                                    target='_blank'
+                                    size='lg'
+                                    variant='bordered'
+                                    radius='full'
+                                    startContent={<img src={AssetWhatsapp.src} className='w-10' alt='WhatsApp Now' />}
+                                >
+                                    +65 9722 2727
+                                </Button>
+                            </a>
                         </div>
 
                         <div className='w-full'>

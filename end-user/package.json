@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "build:prod": "rm -r .next && next build",
         "start": "next start",
         "lint": "next lint",
         "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
@@ -20,12 +21,15 @@
         "prettier": "^3.2.4",
         "prettier-plugin-tailwindcss": "^0.5.11",
         "react": "^18",
-        "react-dom": "^18"
+        "react-dom": "^18",
+        "react-scroll": "^1.9.0",
+        "sharp": "^0.33.2"
     },
     "devDependencies": {
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
+        "@types/react-scroll": "^1.8.10",
         "@typescript-eslint/eslint-plugin": "^6.19.1",
         "@typescript-eslint/parser": "^6.19.1",
         "autoprefixer": "^10.0.1",

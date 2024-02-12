@@ -5,14 +5,18 @@ import AssetTraditional from '@/assets/LandingPage/webp/asset-traditional.webp'
 import AssetRelaxing from '@/assets/LandingPage/webp/asset-relaxing.webp'
 import AssetSpecialTreatment from '@/assets/LandingPage/webp/asset-special-treatment.webp'
 import AssetTheraputicTreatment from '@/assets/LandingPage/webp/asset-theraputic-treatment.webp'
+import AssetHero from '@/assets/LandingPage/webp/asset-advantage-3.webp'
+
+export type Service = {
+    name: string
+    desc: string
+    asset?: StaticImageData
+}
 
 export type Category = {
     image: StaticImageData
     title: string
-    services: {
-        name: string
-        desc: string
-    }[]
+    services: Service[]
 }
 
 export const categories: Category[] = [
@@ -23,14 +27,17 @@ export const categories: Category[] = [
             {
                 name: 'Signature Body Masssage',
                 desc: 'S$39 - 30 minutes',
+                asset: AssetHero,
             },
             {
                 name: 'Authentic Foot Reflexology',
                 desc: 'S$39 - 30 minutes',
+                asset: AssetHero,
             },
             {
                 name: '3 in 1 Packages',
                 desc: 'S$89 - 90 minutes',
+                asset: AssetHero,
             },
         ],
     },
