@@ -1,20 +1,20 @@
 import { JSX } from 'react'
-import AssetAboutUs from '@/assets/LandingPage/webp/asset-about-us.webp'
 import { Button } from '@nextui-org/react'
 import FaqLandingPageAccordion from '@/components/Accordions/LandingPage/FaqLandingPageAccordion'
 import Logo from '@/components/Logo'
-import AssetWhatsapp from '@/assets/LandingPage/svg/asset-whatsapp.svg'
 import ContactCard from '@/components/Cards/LandingPage/ContactCard'
 import ReviewCard from '@/components/Cards/LandingPage/ReviewCard'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/Carousel'
 import { Review, reviews } from '@/data/reviews'
 import { Advantage, advantages } from '@/data/advantages'
+import { Category, Service, categories } from '@/data/categories'
 import AdvantageCard from '@/components/Cards/LandingPage/AdvantageCard'
 import CategoryCard from '@/components/Cards/LandingPage/CategoryCard'
-import { Category, Service, categories } from '@/data/categories'
 import AssetOurMission1 from '@/assets/LandingPage/webp/asset-our-mission-1.webp'
 import Image from 'next/image'
 import ScrollSpy from '@/components/ScrollToTop/ScrollSpy'
+import AssetAboutUs from '@/assets/LandingPage/webp/asset-about-us.webp'
+import AssetWhatsapp from '@/assets/LandingPage/svg/asset-whatsapp.svg'
 
 export default function Home(): JSX.Element {
     return (
@@ -80,7 +80,7 @@ export default function Home(): JSX.Element {
                                 energy of serene environments. Nestled in the heart of Tanjong Pagar.
                             </p>
 
-                            <p className='md:text-xl lg:text-2xl xl:text-3xl'>
+                            <p className='text-lg md:text-xl lg:text-2xl xl:text-3xl'>
                                 Our team comprises young, skilled, and qualified therapists who not only bring expertise
                                 to every massage treatment but also carry a genuine attitude of service.
                             </p>
@@ -152,7 +152,7 @@ export default function Home(): JSX.Element {
             {/* our expertise section */}
             <section id='/services' className='bg-highlight p-4 py-8 md:bg-transparent'>
                 <div className='container rounded-2xl bg-highlight p-6 sm:p-8'>
-                    <header className='mb-8 space-y-4 text-center text-primary lg:text-left'>
+                    <header className='mb-8 space-y-8 text-center text-primary lg:text-left'>
                         <h2>Our Expertise</h2>
 
                         <div className='flex flex-col justify-between gap-6 sm:gap-8 lg:flex-row'>
@@ -168,7 +168,7 @@ export default function Home(): JSX.Element {
                                     radius='full'
                                     size='lg'
                                 >
-                                    <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
+                                    <ScrollSpy to='/contact-us'>Explore More</ScrollSpy>
                                 </Button>
                             </div>
 
@@ -219,7 +219,7 @@ export default function Home(): JSX.Element {
                         ))}
                     </div>
 
-                    <div className='mt-8 flex flex-col items-center space-y-4 text-center'>
+                    <div className='mt-12 flex flex-col items-center space-y-8 text-center'>
                         <p className='max-w-lg text-xl font-medium text-primary md:text-2xl'>
                             Book your session today and embark on a journey of well-being with Healing Oasis.
                         </p>

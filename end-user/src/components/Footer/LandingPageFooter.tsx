@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@nextui-org/react'
 import { JSX } from 'react'
 import Logo from '../Logo'
@@ -8,6 +10,7 @@ import AssetPhone from '@/assets/LandingPage/svg/asset-phone-footer.svg'
 import AssetMail from '@/assets/LandingPage/svg/asset-mail-footer.svg'
 import AssetAddress from '@/assets/LandingPage/svg/asset-map-footer.svg'
 import ScrollSpy from '../ScrollToTop/ScrollSpy'
+import { Link as LinkSpy } from 'react-scroll'
 
 export default function LandingPageFooter(): JSX.Element {
     return (
@@ -40,7 +43,16 @@ export default function LandingPageFooter(): JSX.Element {
                         <ul className='flex flex-col items-center gap-y-4 text-xl font-semibold sm:flex-row sm:gap-x-8'>
                             {navlinks.map((navlink: NavLink, index: number) => (
                                 <li className={`duration-300 hover:text-primary`} key={`navlink-${index}`}>
-                                    <Link href={navlink.path}>{navlink.name}</Link>
+                                    <LinkSpy
+                                        className='cursor-pointer'
+                                        spy={true}
+                                        smooth={true}
+                                        offset={0}
+                                        duration={800}
+                                        to={navlink.path}
+                                    >
+                                        {navlink.name}
+                                    </LinkSpy>
                                 </li>
                             ))}
                         </ul>
