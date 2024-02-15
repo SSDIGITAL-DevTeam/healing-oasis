@@ -21,15 +21,15 @@ export default function Home(): JSX.Element {
     return (
         <main>
             {/* hero section */}
-            <header className='relative'>
-                <div className='min-h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem]'>
+            <header className='relative lg:p-8'>
+                <div className='min-h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem] lg:rounded-2xl'>
                     <div className='container flex min-h-screen flex-col items-center justify-center gap-y-12 py-8 md:items-start'>
                         <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
                             Revitalize Your Mind, Body, and Spirit with Spa & Massage Treatments
                         </h1>
 
                         <Button className='text-light' size='lg' radius='full' variant='bordered'>
-                            <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
+                            <ScrollSpy to='/contact-us'>Book a Session</ScrollSpy>
                         </Button>
                     </div>
 
@@ -111,7 +111,7 @@ export default function Home(): JSX.Element {
                     <header className='mb-8 space-y-4 text-center text-primary lg:max-w-lg lg:text-left'>
                         <h2>Our Mission</h2>
 
-                        <p className='pt-8 md:text-xl'>
+                        <p className='pt-8 md:text-lg lg:text-xl xl:text-2xl'>
                             Provide a team of highly trained professionals dedicated to delivering exceptional service
                             that prioritizes your comfort at every step
                         </p>
@@ -121,7 +121,7 @@ export default function Home(): JSX.Element {
                             size='lg'
                             radius='full'
                         >
-                            <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
+                            <ScrollSpy to='/contact-us'>Book a Session</ScrollSpy>
                         </Button>
                     </header>
                 </div>
@@ -137,7 +137,7 @@ export default function Home(): JSX.Element {
                         <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
                             <p className='text-4xl font-medium'>130+</p>
 
-                            <p className=''>Booked Section</p>
+                            <p className=''>Booked Session</p>
                         </div>
 
                         <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
@@ -145,7 +145,7 @@ export default function Home(): JSX.Element {
                                 <span className='text-xl'>⭐</span>5.0
                             </p>
 
-                            <p className=''>Star Rating</p>
+                            <p className=''>Stars Rating</p>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@ export default function Home(): JSX.Element {
 
                         <div className='flex flex-col justify-between gap-6 sm:gap-8 lg:flex-row'>
                             <div className='space-y-6'>
-                                <p className='mx-auto max-w-xl md:text-xl'>
+                                <p className='mx-auto max-w-xl md:text-lg lg:text-xl xl:text-2xl'>
                                     Each touch is dedicated to warming your heart and easing the tensions of your daily
                                     life.
                                 </p>
@@ -171,11 +171,11 @@ export default function Home(): JSX.Element {
                                     radius='full'
                                     size='lg'
                                 >
-                                    <ScrollSpy to='/contact-us'>Book a Session</ScrollSpy>
+                                    <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
                                 </Button>
                             </div>
 
-                            <p className='mx-auto max-w-lg sm:text-xl md:text-2xl'>
+                            <p className='mx-auto max-w-lg md:text-lg lg:text-xl xl:text-2xl'>
                                 To be the beacon of relaxation for the working class, the haven for residents, and the
                                 source of peacefulness for every explorer in Singapore.
                             </p>
@@ -254,7 +254,7 @@ export default function Home(): JSX.Element {
                         <header className='mb-8 space-y-4 text-center text-primary lg:text-left'>
                             <h2>What Our Customers Say About Us</h2>
 
-                            <p className='max-w-xl'>
+                            <p className='max-w-xl md:text-xl'>
                                 Don&apos;t just take our word for it - see what actual users of our service have to say
                                 about their experience.
                             </p>
@@ -263,7 +263,7 @@ export default function Home(): JSX.Element {
 
                     <div>
                         <Carousel className='w-full'>
-                            <CarouselContent>
+                            <CarouselContent className='p-2'>
                                 {reviews.map((review: Review, index: number) => (
                                     <CarouselItem className='md:basis-1/2 md:p-4 lg:basis-1/3' key={`review-${index}`}>
                                         <ReviewCard review={review} />

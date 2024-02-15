@@ -38,7 +38,7 @@ export default function FaqLandingPageAccordion(): JSX.Element {
                         }}
                         title={item.title}
                         startContent={
-                            <div className='rounded-lg bg-secondary p-2 text-white shadow-md sm:p-4 sm:text-xl'>
+                            <div className='rounded-lg bg-secondary p-2 text-sm text-white shadow-md sm:p-4 sm:text-xl'>
                                 <p>{`0${index + 1}`}</p>
                             </div>
                         }
