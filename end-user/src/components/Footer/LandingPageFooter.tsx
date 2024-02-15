@@ -6,9 +6,9 @@ import Logo from '../Logo'
 import Link from 'next/link'
 import { navlinks } from '@/constants'
 import { NavLink } from '@/types'
-import AssetPhone from '@/assets/LandingPage/svg/asset-phone-footer.svg'
-import AssetMail from '@/assets/LandingPage/svg/asset-mail-footer.svg'
-import AssetAddress from '@/assets/LandingPage/svg/asset-map-footer.svg'
+// import AssetPhone from '@/assets/LandingPage/svg/asset-phone-footer.svg'
+// import AssetMail from '@/assets/LandingPage/svg/asset-mail-footer.svg'
+// import AssetAddress from '@/assets/LandingPage/svg/asset-map-footer.svg'
 import ScrollSpy from '../ScrollToTop/ScrollSpy'
 import { Link as LinkSpy } from 'react-scroll'
 
@@ -18,12 +18,9 @@ export default function LandingPageFooter(): JSX.Element {
             <div className='container space-y-8 p-6 sm:p-8'>
                 <div className='flex flex-col items-center gap-8 lg:flex-row lg:justify-between'>
                     <div className='space-y-6 text-center lg:text-left'>
-                        <p className='text-xl font-semibold italic lg:text-2xl'>
-                            Revitalize Your Spirit, Renew Your Energy: Unwind at Healing Oasis,
-                        </p>
-
-                        <p className='text-xl font-semibold italic lg:text-2xl'>
-                            Where Tranquility Meets Skilled Touch, for Your Sanctuary of Relaxation
+                        <p className='max-w-3xl text-xl font-semibold italic lg:text-2xl'>
+                            Renew your vitality and rejuvenate your energy at Healing Oasis, where tranquility merges
+                            with expert care, offering you a haven of relaxation.
                         </p>
                     </div>
 
@@ -58,7 +55,7 @@ export default function LandingPageFooter(): JSX.Element {
                         </ul>
                     </div>
 
-                    <ul className='mx-auto flex flex-col items-center gap-y-4 text-center font-medium xl:items-start'>
+                    {/* <ul className='mx-auto flex flex-col items-center gap-y-4 text-center font-medium xl:items-start'>
                         <li>
                             <div className='flex items-center gap-x-2'>
                                 <img src={AssetPhone.src} alt='Phone' />
@@ -90,7 +87,7 @@ export default function LandingPageFooter(): JSX.Element {
                                 <address>Tanjong Pagar Plaza BLK 1 #01-47, Singapore (082001)</address>
                             </div>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
 

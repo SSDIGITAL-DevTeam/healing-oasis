@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Link as LinkSpy } from 'react-scroll'
 import ScrollSpy from '../ScrollToTop/ScrollSpy'
 import { Cross2Icon, HamburgerMenuIcon } from '@radix-ui/react-icons'
+import { motion } from 'framer-motion'
 
 export default function LandingPageNavbar(): JSX.Element {
     // states
@@ -42,7 +43,7 @@ export default function LandingPageNavbar(): JSX.Element {
                 </ul>
 
                 <div className='flex items-center gap-x-4'>
-                    <Button className='bg-light font-medium text-primary' size='lg' radius='full'>
+                    <Button className='hidden bg-light font-medium text-primary lg:block' size='lg' radius='full'>
                         <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
                     </Button>
 
@@ -52,22 +53,29 @@ export default function LandingPageNavbar(): JSX.Element {
 
             {/* mobile nav */}
             <div
-                className={`${isNavbarOpen ? 'translate-x-0' : 'translate-x-full'} fixed inset-0 flex flex-col justify-between gap-4 space-y-12 bg-secondary p-6 duration-300`}
+                className={`${isNavbarOpen ? 'translate-x-0' : 'translate-x-full'} fixed inset-0 flex flex-col justify-between gap-4 space-y-12 bg-light p-6 duration-500 ease-in-out`}
             >
                 <div className='flex items-center justify-between gap-x-4'>
                     <Link href={'/'}>
-                        <Logo className='w-24' dark />
+                        <Logo className='w-24' />
                     </Link>
 
-                    <Cross2Icon onClick={() => setIsNavbarOpen(false)} className='h-8 w-8 text-light' />
+                    <Cross2Icon onClick={() => setIsNavbarOpen(false)} className='h-8 w-8 font-semibold text-primary' />
                 </div>
 
-                <ul className='flex flex-col items-center gap-y-6 px-8 py-4 text-3xl font-semibold text-white lg:hidden'>
+                <ul className='flex flex-col items-center gap-y-6 text-xl font-medium text-primary lg:hidden'>
                     {navlinks.map((navlink: NavLink, index: number) => (
-                        <li className={`duration-300 hover:text-primary`} key={`navlink-${index}`}>
+                        <motion.li
+                            initial={{ x: '100%' }}
+                            whileInView={{ x: 0 }}
+                            transition={{ duration: 0.2, delay: (0.2 * index) / 2 }}
+                            className='w-full'
+                            key={`navlink-${index}`}
+                        >
                             <LinkSpy
                                 onClick={() => setIsNavbarOpen(false)}
-                                className='cursor-pointer'
+                                // className='cursor-pointer'
+                                className={`block w-full rounded-lg border bg-white p-4 duration-300 hover:text-primary`}
                                 spy={true}
                                 smooth={true}
                                 offset={0}
@@ -76,13 +84,14 @@ export default function LandingPageNavbar(): JSX.Element {
                             >
                                 {navlink.name}
                             </LinkSpy>
-                        </li>
+                        </motion.li>
                     ))}
                 </ul>
 
                 <Button
                     onPress={() => setIsNavbarOpen(false)}
-                    className='w-full bg-light font-medium text-primary'
+                    className='w-full'
+                    color='primary'
                     size='lg'
                     radius='full'
                 >

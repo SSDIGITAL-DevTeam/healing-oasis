@@ -1,13 +1,13 @@
 import { JSX } from 'react'
 import { Button } from '@nextui-org/react'
 import FaqLandingPageAccordion from '@/components/Accordions/LandingPage/FaqLandingPageAccordion'
-import Logo from '@/components/Logo'
+// import Logo from '@/components/Logo'
 import ContactCard from '@/components/Cards/LandingPage/ContactCard'
 import ReviewCard from '@/components/Cards/LandingPage/ReviewCard'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/Carousel'
 import { Review, reviews } from '@/data/reviews'
 import { Advantage, advantages } from '@/data/advantages'
-import { Category, Service, categories } from '@/data/categories'
+import { Category, categories } from '@/data/categories'
 import AdvantageCard from '@/components/Cards/LandingPage/AdvantageCard'
 import CategoryCard from '@/components/Cards/LandingPage/CategoryCard'
 import AssetOurMission1 from '@/assets/LandingPage/webp/asset-our-mission-1.webp'
@@ -15,28 +15,29 @@ import Image from 'next/image'
 import ScrollSpy from '@/components/ScrollToTop/ScrollSpy'
 import AssetAboutUs from '@/assets/LandingPage/webp/asset-about-us.webp'
 import AssetWhatsapp from '@/assets/LandingPage/svg/asset-whatsapp.svg'
+import Link from 'next/link'
 
 export default function Home(): JSX.Element {
     return (
         <main>
             {/* hero section */}
             <header className='relative'>
-                <div className='h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem]'>
-                    <div className='container flex h-full flex-col items-center justify-center gap-y-12 pb-8 md:items-start'>
+                <div className='min-h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem]'>
+                    <div className='container flex min-h-screen flex-col items-center justify-center gap-y-12 py-8 md:items-start'>
                         <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
                             Revitalize Your Mind, Body, and Spirit with Spa & Massage Treatments
                         </h1>
 
                         <Button className='text-light' size='lg' radius='full' variant='bordered'>
-                            <ScrollSpy to='/contact-us'>Schedule Appointment</ScrollSpy>
+                            <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
                         </Button>
                     </div>
 
-                    <div className='absolute bottom-12 right-0 ml-auto max-w-xs md:max-w-xl xl:max-w-2xl'>
+                    {/* <div className='absolute bottom-12 right-0 ml-auto max-w-xs md:max-w-xl xl:max-w-2xl'>
                         <Carousel className='relative w-full'>
                             <CarouselContent>
                                 {categories[0].services.map((service: Service, index: number) => (
-                                    <CarouselItem className='md:basis-1/2 md:p-4' key={`review-${index}`}>
+                                    <CarouselItem className='md:basis-1/2 md:p-4' key={`service-${index}`}>
                                         <div className='flex items-center gap-x-4 rounded-lg bg-white/20 p-2 lg:p-2.5'>
                                             <Image
                                                 src={service.asset!}
@@ -54,7 +55,7 @@ export default function Home(): JSX.Element {
 
                             <CarouselNext className='hidden border-none text-primary lg:flex lg:scale-80' />
                         </Carousel>
-                    </div>
+                    </div> */}
                 </div>
             </header>
             {/* end of hero section */}
@@ -80,7 +81,7 @@ export default function Home(): JSX.Element {
                                 energy of serene environments. Nestled in the heart of Tanjong Pagar.
                             </p>
 
-                            <p className='text-lg md:text-xl lg:text-2xl xl:text-3xl'>
+                            <p className='md:text-lg lg:text-xl xl:text-2xl'>
                                 Our team comprises young, skilled, and qualified therapists who not only bring expertise
                                 to every massage treatment but also carry a genuine attitude of service.
                             </p>
@@ -128,21 +129,23 @@ export default function Home(): JSX.Element {
                 <div className='flex w-full items-center bg-[url("/webp/asset-our-mission-bg.webp")] bg-cover bg-center bg-no-repeat p-8 py-20'>
                     <div className='container flex flex-col items-center justify-center gap-y-6 md:flex-row md:gap-x-12 lg:justify-start'>
                         <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
-                            <p className='text-4xl font-medium'>5K</p>
+                            <p className='text-4xl font-medium'>100+</p>
 
-                            <p className=''>Customer Rating</p>
-                        </div>
-
-                        <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
-                            <p className='text-4xl font-medium'>250+</p>
-
-                            <p className=''>Happy Customer</p>
+                            <p className=''>Customers</p>
                         </div>
 
                         <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
                             <p className='text-4xl font-medium'>130+</p>
 
-                            <p className=''>Online Orders</p>
+                            <p className=''>Booked Section</p>
+                        </div>
+
+                        <div className='w-full rounded-lg bg-white/30 p-4 text-center text-light lg:w-40'>
+                            <p className='flex items-center justify-center text-4xl font-medium'>
+                                <span className='text-xl'>⭐</span>5.0
+                            </p>
+
+                            <p className=''>Star Rating</p>
                         </div>
                     </div>
                 </div>
@@ -168,7 +171,7 @@ export default function Home(): JSX.Element {
                                     radius='full'
                                     size='lg'
                                 >
-                                    <ScrollSpy to='/contact-us'>Explore More</ScrollSpy>
+                                    <ScrollSpy to='/contact-us'>Book a Session</ScrollSpy>
                                 </Button>
                             </div>
 
@@ -184,7 +187,10 @@ export default function Home(): JSX.Element {
                         <Carousel className='w-full'>
                             <CarouselContent>
                                 {categories.map((category: Category, index: number) => (
-                                    <CarouselItem className='md:basis-1/2 md:pl-4 lg:basis-1/3' key={`review-${index}`}>
+                                    <CarouselItem
+                                        className='md:basis-1/2 md:pl-4 lg:basis-1/3'
+                                        key={`category-${index}`}
+                                    >
                                         <CategoryCard category={category} />
                                     </CarouselItem>
                                 ))}
@@ -202,6 +208,10 @@ export default function Home(): JSX.Element {
                             <CategoryCard key={`category-${index}`} category={category} />
                         ))}
                     </div>
+
+                    <Button className='mx-auto mt-8 block' color='primary' size='lg' radius='full'>
+                        <ScrollSpy to='/contact-us'>Book My Session</ScrollSpy>
+                    </Button>
                 </div>
             </section>
             {/* end of our expertise section */}
@@ -221,7 +231,7 @@ export default function Home(): JSX.Element {
 
                     <div className='mt-12 flex flex-col items-center space-y-8 text-center'>
                         <p className='max-w-lg text-xl font-medium text-primary md:text-2xl'>
-                            Book your session today and embark on a journey of well-being with Healing Oasis.
+                            Book your session today and begin your wellness journey at Healing Oasis.
                         </p>
 
                         <Button
@@ -239,7 +249,7 @@ export default function Home(): JSX.Element {
 
             {/* reviews section */}
             <section className='py-8'>
-                <div className='container p-6 sm:p-8'>
+                <div className='container flex flex-col gap-y-8 p-6 sm:p-8'>
                     <div className='flex items-center justify-center gap-6 lg:justify-between'>
                         <header className='mb-8 space-y-4 text-center text-primary lg:text-left'>
                             <h2>What Our Customers Say About Us</h2>
@@ -266,6 +276,19 @@ export default function Home(): JSX.Element {
                             <CarouselNext className='border-none bg-highlight text-primary' />
                         </Carousel>
                     </div>
+
+                    <Button
+                        className='self-center'
+                        as={Link}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        href='https://www.google.com/search?q=healing+oasis+singapore&rlz=1C1ONGR_enID1075ID1075&oq=healing+oasis+sin&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDkyBggCEEUYPDIGCAMQRRg80gEINjQ5N2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x31da191df6faac6f:0x7c99791c6555d5a7,1,,,,'
+                        radius='full'
+                        size='lg'
+                        color='primary'
+                    >
+                        See All Reviews
+                    </Button>
                 </div>
             </section>
             {/* end of reviews section */}
@@ -286,12 +309,10 @@ export default function Home(): JSX.Element {
             <section id='/contact-us' className='py-8'>
                 <div className='container px-6 sm:px-8'>
                     <div className='flex flex-col gap-x-8 gap-y-8 md:flex-row'>
-                        <div className='flex w-full flex-col items-center justify-center gap-y-12 text-center xl:gap-y-16'>
-                            <Logo className='w-48 lg:w-64' />
+                        <div className='mb-8 flex w-full flex-col items-center justify-center gap-y-8 text-center'>
+                            {/* <Logo className='w-48 lg:w-64' /> */}
 
-                            <h2 className='text-2xl font-semibold text-primary md:text-3xl lg:text-4xl'>
-                                Book Via Whatsapp
-                            </h2>
+                            <h2 className='text-3xl font-semibold text-primary lg:text-4xl'>Book Via Whatsapp</h2>
 
                             <a href='https://wa.me/6597222727' target='_blank' rel='noopener noreferrer'>
                                 <Button
@@ -312,7 +333,7 @@ export default function Home(): JSX.Element {
                         <div className='w-full'>
                             <iframe
                                 className='aspect-square w-full rounded-2xl lg:aspect-auto lg:h-[28rem]'
-                                src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.318357691753!2d103.8424828!3d1.2755841!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da191df6faac6f%3A0x7c99791c6555d5a7!2sHealing%20Oasis!5e0!3m2!1sid!2sid!4v1707451184464!5m2!1sid!2sid'
+                                src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.318357691753!2d103.8424828!3d1.2755841!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da191df6faac6f%3A0x7c99791c6555d5a7!2sHealing%20Oasis!5e0!3m2!1sen!2sen!4v1707451184464!5m2!1sen!2sen'
                                 loading='lazy'
                                 referrerPolicy='no-referrer-when-downgrade'
                             ></iframe>

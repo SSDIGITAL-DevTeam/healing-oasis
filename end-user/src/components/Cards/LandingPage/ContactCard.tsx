@@ -1,7 +1,6 @@
 import { JSX } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import AssetPhoneContact from '@/assets/LandingPage/svg/asset-phone-contact.svg'
-import AssetEmailContact from '@/assets/LandingPage/svg/asset-mail-contact.svg'
 import AssetLocationContact from '@/assets/LandingPage/svg/asset-location-contact.svg'
 
 type Contact = {
@@ -13,24 +12,19 @@ type Contact = {
 const contacts: Contact[] = [
     {
         image: AssetPhoneContact,
-        title: 'Phone Number',
+        title: 'Booking Hotline',
         desc: '+65 9722 2727',
     },
     {
-        image: AssetEmailContact,
-        title: 'Email Address',
-        desc: 'nails-ops@healingoasis.com.sg',
-    },
-    {
         image: AssetLocationContact,
-        title: 'Store Address',
+        title: 'Location',
         desc: 'Tanjong Pagar Plaza BLK 1 #01-47, Singapore (082001)',
     },
 ]
 
 export default function ContactCard(): JSX.Element {
     return (
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-3 xl:gap-8'>
+        <div className='mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2 xl:gap-16'>
             {contacts.map((contact: Contact, index: number) => (
                 <div
                     key={index}

@@ -13,16 +13,17 @@ export const advantages: Advantage[] = [
     {
         image: AssetAdvantage1,
         name: 'Tranquil Spaces ',
-        content: 'Immerse yourself in the serenity of our clean and inviting environment',
+        content: 'Immerse yourself in the serenity of our clean and inviting environment.',
     },
     {
         image: AssetAdvantage2,
-        name: 'Dedicated Therapist',
-        content: ' Our skilled therapists are committed to delivering service from the heart',
+        name: 'Dedicated Therapists',
+        content: 'Our dedicated therapists are devoted to provide heartfelt service.',
     },
     {
         image: AssetAdvantage3,
-        name: 'Competitive Advantage',
-        content: 'Experience the difference with Healing Oasis - where every touch is a promise of tranquility',
+        name: 'Gateway to Vitality',
+        content:
+            'A range of services guaranteed to leave you refreshed and prepared for whatever life throws your way.',
     },
 ]

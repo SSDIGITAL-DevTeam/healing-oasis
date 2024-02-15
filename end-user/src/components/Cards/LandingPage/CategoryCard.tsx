@@ -20,7 +20,7 @@ export default function CategoryCard({ category }: Props): JSX.Element {
                 <ul className='flex w-full flex-col items-center gap-2 p-4 sm:p-8 md:gap-4'>
                     {category.services.map((service: { name: string; desc: string }, index: number) => (
                         <li
-                            className='w-full rounded-full border px-4 py-2 text-center text-sm'
+                            className='w-full rounded-full border px-4 py-2 text-center text-sm duration-150 hover:bg-white/25'
                             key={`service-${index}`}
                         >
                             <Link className='space-y-2' href={'#'}>
