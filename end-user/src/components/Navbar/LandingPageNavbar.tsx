@@ -74,8 +74,7 @@ export default function LandingPageNavbar(): JSX.Element {
                         >
                             <LinkSpy
                                 onClick={() => setIsNavbarOpen(false)}
-                                // className='cursor-pointer'
-                                className={`block w-full rounded-lg border bg-white p-4 duration-300 hover:text-primary`}
+                                className={`block w-full rounded-lg border border-primary/10 bg-white p-4 duration-300 hover:text-primary`}
                                 spy={true}
                                 smooth={true}
                                 offset={0}

@@ -27,7 +27,6 @@ export default function Home(): JSX.Element {
                     <Image
                         className='h-screen w-screen object-cover lg:h-[90vh] lg:rounded-3xl'
                         radius='none'
-                        isBlurred
                         src={AssetHero.src}
                         alt='Hero'
                     />
