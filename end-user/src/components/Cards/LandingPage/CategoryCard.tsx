@@ -10,7 +10,7 @@ type Props = {
 export default function CategoryCard({ category }: Props): JSX.Element {
     return (
         <div className='relative'>
-            <Image src={category.image.src} alt={category.title} />
+            <Image isBlurred src={category.image.src} alt={category.title} />
 
             <div className='absolute inset-0 z-20 flex flex-col items-center gap-4 py-16 text-light sm:py-16 md:py-24 xl:py-28'>
                 <p className='text-center text-xl font-medium md:text-2xl xl:text-3xl'>

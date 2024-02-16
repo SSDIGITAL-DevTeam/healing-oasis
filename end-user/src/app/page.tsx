@@ -1,7 +1,6 @@
 import { JSX } from 'react'
-import { Button } from '@nextui-org/react'
+import { Button, Image } from '@nextui-org/react'
 import FaqLandingPageAccordion from '@/components/Accordions/LandingPage/FaqLandingPageAccordion'
-// import Logo from '@/components/Logo'
 import ContactCard from '@/components/Cards/LandingPage/ContactCard'
 import ReviewCard from '@/components/Cards/LandingPage/ReviewCard'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/Carousel'
@@ -12,6 +11,7 @@ import AdvantageCard from '@/components/Cards/LandingPage/AdvantageCard'
 import CategoryCard from '@/components/Cards/LandingPage/CategoryCard'
 import AssetOurMission1 from '@/assets/LandingPage/webp/asset-our-mission-1.webp'
 import ScrollSpy from '@/components/ScrollToTop/ScrollSpy'
+import AssetHero from '@/assets/LandingPage/webp/asset-hero-landing-page.webp'
 import AssetAboutUs from '@/assets/LandingPage/webp/asset-about-us.webp'
 import AssetWhatsapp from '@/assets/LandingPage/svg/asset-whatsapp.svg'
 import Link from 'next/link'
@@ -21,9 +21,18 @@ export default function Home(): JSX.Element {
     return (
         <main>
             {/* hero section */}
-            <header className='relative lg:p-8'>
-                <div className='h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem] lg:rounded-2xl'>
-                    <div className='container flex h-full max-h-screen flex-col items-center justify-center gap-y-12 py-8 md:items-start'>
+            <header className='relative lg:p-10'>
+                {/* bg-[url("/webp/asset-hero-landing-page.webp")] */}
+                <div className='relative min-h-[90vh]'>
+                    <Image
+                        className='h-screen w-screen object-cover lg:h-[90vh] lg:rounded-3xl'
+                        radius='none'
+                        isBlurred
+                        src={AssetHero.src}
+                        alt='Hero'
+                    />
+
+                    <div className='container absolute inset-0 z-20 flex h-full max-h-screen flex-col items-center justify-center gap-y-12 py-8 md:items-start'>
                         <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
                             Revitalize Your Mind, Body, and Spirit with Spa & Massage Treatments
                         </h1>
@@ -154,7 +163,7 @@ export default function Home(): JSX.Element {
 
             {/* our expertise section */}
             <section id='/services' className='bg-highlight p-4 py-8 md:bg-transparent'>
-                <div className='container rounded-2xl bg-highlight p-6 sm:p-8'>
+                <div className='container rounded-2xl bg-highlight p-2 sm:p-12'>
                     <header className='mb-8 space-y-8 text-center text-primary lg:text-left'>
                         <h2>Our Expertise</h2>
 
@@ -249,7 +258,7 @@ export default function Home(): JSX.Element {
 
             {/* reviews section */}
             <section className='py-8'>
-                <div className='container flex flex-col gap-y-8 p-6 sm:p-8'>
+                <div className='container flex flex-col gap-y-8 p-4 sm:p-8'>
                     <div className='flex items-center justify-center gap-6 lg:justify-between'>
                         <header className='mb-8 space-y-4 text-center text-primary lg:text-left'>
                             <h2>What Our Customers Say About Us</h2>

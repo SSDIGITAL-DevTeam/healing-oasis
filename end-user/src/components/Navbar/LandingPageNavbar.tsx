@@ -16,7 +16,7 @@ export default function LandingPageNavbar(): JSX.Element {
     const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false)
 
     return (
-        <nav className='container absolute inset-x-0 z-50 p-2.5 md:p-4 lg:mt-6'>
+        <nav className='container absolute inset-x-0 z-50 p-2.5 md:p-4 lg:mt-8'>
             <div className='flex items-center justify-between rounded-2xl p-4'>
                 <Link href={'/'}>
                     <Logo className='w-24' dark />
@@ -53,7 +53,7 @@ export default function LandingPageNavbar(): JSX.Element {
 
             {/* mobile nav */}
             <div
-                className={`${isNavbarOpen ? 'translate-x-0' : 'translate-x-full'} fixed inset-0 flex max-h-screen flex-col justify-between gap-4 space-y-12 overflow-y-auto bg-light p-6 duration-500 ease-in-out`}
+                className={`${isNavbarOpen ? 'translate-x-0' : 'translate-x-full'} fixed inset-0 z-50 flex max-h-screen flex-col justify-between gap-4 space-y-12 overflow-y-auto bg-light p-6 duration-500 ease-in-out`}
             >
                 <div className='flex items-center justify-between gap-x-4'>
                     <Link href={'/'}>

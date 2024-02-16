@@ -9,7 +9,13 @@ type Props = {
 export default function AdvantageCard({ advantage }: Props): JSX.Element {
     return (
         <div className='flex flex-col items-center justify-center gap-y-6 text-center'>
-            <Image className='mx-auto md:max-w-[80%]' src={advantage.image.src} alt={advantage.name} />
+            <Image
+                className='mx-auto md:max-w-[80%]'
+                isBlurred
+                loading='lazy'
+                src={advantage.image.src}
+                alt={advantage.name}
+            />
 
             <header className='space-y-4 text-primary'>
                 <h3 className='text-xl font-bold md:text-3xl'>{advantage.name}</h3>
