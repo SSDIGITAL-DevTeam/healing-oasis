@@ -1,7 +1,7 @@
 import { JSX } from 'react'
-import Image from 'next/image'
 import AssetLogoLight from '@/assets/Logo/asset-logo-for-light.webp'
 import AssetLogoDark from '@/assets/Logo/asset-logo-for-dark.webp'
+import { Image } from '@nextui-org/react'
 
 export default function Logo({
     className,
@@ -15,13 +15,12 @@ export default function Logo({
     return (
         <figure>
             {dark ? (
-                <Image className={className} src={AssetLogoDark} alt='Logo' priority />
+                <Image className={className} src={AssetLogoDark.src} alt='Logo' />
             ) : (
                 <Image
                     className={`${className} ${transparent ? '' : 'rounded bg-light p-1'}`}
-                    src={AssetLogoLight}
+                    src={AssetLogoLight.src}
                     alt='Logo'
-                    priority
                 />
             )}
         </figure>

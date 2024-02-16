@@ -11,19 +11,19 @@ import { Category, categories } from '@/data/categories'
 import AdvantageCard from '@/components/Cards/LandingPage/AdvantageCard'
 import CategoryCard from '@/components/Cards/LandingPage/CategoryCard'
 import AssetOurMission1 from '@/assets/LandingPage/webp/asset-our-mission-1.webp'
-import Image from 'next/image'
 import ScrollSpy from '@/components/ScrollToTop/ScrollSpy'
 import AssetAboutUs from '@/assets/LandingPage/webp/asset-about-us.webp'
 import AssetWhatsapp from '@/assets/LandingPage/svg/asset-whatsapp.svg'
 import Link from 'next/link'
+import { WHATSAPP_LINK } from '@/constants'
 
 export default function Home(): JSX.Element {
     return (
         <main>
             {/* hero section */}
             <header className='relative lg:p-8'>
-                <div className='min-h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem] lg:rounded-2xl'>
-                    <div className='container flex min-h-screen flex-col items-center justify-center gap-y-12 py-8 md:items-start'>
+                <div className='h-screen bg-[url("/webp/asset-hero-landing-page.webp")] bg-cover bg-center bg-no-repeat lg:max-h-[52rem] lg:rounded-2xl'>
+                    <div className='container flex h-full max-h-screen flex-col items-center justify-center gap-y-12 py-8 md:items-start'>
                         <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
                             Revitalize Your Mind, Body, and Spirit with Spa & Massage Treatments
                         </h1>
@@ -102,9 +102,9 @@ export default function Home(): JSX.Element {
             {/* our mission section */}
             <section className='py-8'>
                 <div className='container relative p-6 sm:p-8'>
-                    <Image
+                    <img
                         className='absolute right-8 top-6 hidden w-72 rounded-full lg:block'
-                        src={AssetOurMission1}
+                        src={AssetOurMission1.src}
                         alt='Our Mission'
                     />
 
@@ -314,7 +314,7 @@ export default function Home(): JSX.Element {
 
                             <h2 className='text-3xl font-semibold text-primary lg:text-4xl'>Book Via Whatsapp</h2>
 
-                            <a href='https://wa.me/6597222727' target='_blank' rel='noopener noreferrer'>
+                            <a href={WHATSAPP_LINK} target='_blank' rel='noopener noreferrer'>
                                 <Button
                                     className='border border-primary py-6 text-2xl font-bold text-primary'
                                     aria-label='Healing Oasis WhatsApp Number'

@@ -25,7 +25,7 @@ export default function ScrollToTop(): JSX.Element {
                     smooth={true}
                     offset={-150}
                     duration={800}
-                    to='top'
+                    to='/home'
                 >
                     <ArrowUpIcon className='h-6 w-6' />
                 </Link>

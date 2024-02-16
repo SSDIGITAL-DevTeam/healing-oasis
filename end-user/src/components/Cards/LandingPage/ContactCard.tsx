@@ -2,6 +2,7 @@ import { JSX } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import AssetPhoneContact from '@/assets/LandingPage/svg/asset-phone-contact.svg'
 import AssetLocationContact from '@/assets/LandingPage/svg/asset-location-contact.svg'
+import { Link } from '@nextui-org/react'
 
 type Contact = {
     image: StaticImageData
@@ -40,7 +41,13 @@ export default function ContactCard(): JSX.Element {
                         <h2 className='text-xl'>{contact.title}</h2>
                     </div>
 
-                    <p className='h-3/5 text-lg'>{contact.desc}</p>
+                    {index === 0 ? (
+                        <Link className='text-light' href='tel:+65 9722 2727'>
+                            {contact.desc}
+                        </Link>
+                    ) : (
+                        <p className='h-3/5 text-lg'>{contact.desc}</p>
+                    )}
                 </div>
             ))}
         </div>

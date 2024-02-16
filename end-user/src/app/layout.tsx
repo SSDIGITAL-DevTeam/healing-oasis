@@ -7,7 +7,7 @@ import ScrollToTop from '@/components/ScrollToTop'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://healing-oasis.vercel.app'), // later change this url with real domain
+    metadataBase: new URL('https://healingoasis.com.sg'), // later change this url with real domain
     title: 'Healing Oasis | Massage and Spa Singapore',
     description:
         'Revitalize your mind, body, and spirit with spa & massage treatments at Healing Oasis. Book your session now and feel the comfort.',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>): JSX.Element {
     return (
         <html lang='en'>
-            <body id='top'>
+            <body id='/home'>
                 <Providers>
                     <LandingPageNavbar />
 
