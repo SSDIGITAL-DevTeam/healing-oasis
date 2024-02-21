@@ -1,6 +1,5 @@
 import { Category } from '@/data/categories'
 import { Image } from '@nextui-org/react'
-import Link from 'next/link'
 import { JSX } from 'react'
 
 type Props = {
@@ -23,11 +22,11 @@ export default function CategoryCard({ category }: Props): JSX.Element {
                             className='w-full rounded-full border px-4 py-2 text-center text-sm duration-150 hover:bg-white/25'
                             key={`service-${index}`}
                         >
-                            <Link className='space-y-2' href={'#'}>
+                            <div className='flex flex-col gap-y-2'>
                                 <p className=''>{service.name}</p>
 
                                 <p className=''>{service.desc}</p>
-                            </Link>
+                            </div>
                         </li>
                     ))}
                 </ul>
