@@ -18,7 +18,7 @@ export default function Logo({
                 <Image className={className} src={AssetLogoDark.src} alt='Logo' />
             ) : (
                 <Image
-                    className={`${className} ${transparent ? '' : 'rounded bg-light p-1'}`}
+                    className={`${className} ${transparent ? '' : 'rounded-lg bg-light p-1'}`}
                     src={AssetLogoLight.src}
                     alt='Logo'
                 />

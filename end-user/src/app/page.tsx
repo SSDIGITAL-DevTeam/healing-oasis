@@ -1,5 +1,5 @@
 import { JSX } from 'react'
-import { Button, Image } from '@nextui-org/react'
+import { Button } from '@nextui-org/react'
 import FaqLandingPageAccordion from '@/components/Accordions/LandingPage/FaqLandingPageAccordion'
 import ContactCard from '@/components/Cards/LandingPage/ContactCard'
 import ReviewCard from '@/components/Cards/LandingPage/ReviewCard'
@@ -21,15 +21,10 @@ export default function Home(): JSX.Element {
     return (
         <main>
             {/* hero section */}
-            <header className='relative lg:p-10'>
+            <header className='relative h-screen lg:p-10'>
                 {/* bg-[url("/webp/asset-hero-landing-page.webp")] */}
-                <div className='relative min-h-[90vh]'>
-                    <Image
-                        className='h-screen w-screen object-cover lg:h-[90vh] lg:rounded-3xl'
-                        radius='none'
-                        src={AssetHero.src}
-                        alt='Hero'
-                    />
+                <div className='absolute inset-0 lg:inset-10'>
+                    <img className='h-full w-full object-cover lg:rounded-3xl' src={AssetHero.src} alt='Hero' />
 
                     <div className='container absolute inset-0 z-20 flex h-full max-h-screen flex-col items-center justify-center gap-y-12 py-8 md:items-start'>
                         <h1 className='max-w-5xl text-center leading-snug text-light md:text-left'>
