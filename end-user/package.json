@@ -3,23 +3,33 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "next dev -p 3002",
         "build": "next build",
+        "build:prod": "rm -r .next && next build",
         "start": "next start",
         "lint": "next lint",
         "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
+        "@nextui-org/react": "^2.2.9",
+        "@radix-ui/react-icons": "^1.3.0",
+        "@radix-ui/react-slot": "^1.0.2",
+        "class-variance-authority": "^0.7.0",
+        "embla-carousel-react": "^8.0.0-rc22",
+        "framer-motion": "^11.0.3",
         "next": "14.1.0",
         "prettier": "^3.2.4",
         "prettier-plugin-tailwindcss": "^0.5.11",
         "react": "^18",
-        "react-dom": "^18"
+        "react-dom": "^18",
+        "react-scroll": "^1.9.0",
+        "sharp": "^0.33.2"
     },
     "devDependencies": {
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
+        "@types/react-scroll": "^1.8.10",
         "@typescript-eslint/eslint-plugin": "^6.19.1",
         "@typescript-eslint/parser": "^6.19.1",
         "autoprefixer": "^10.0.1",
