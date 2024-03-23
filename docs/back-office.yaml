@@ -1,0 +1,825 @@
+openapi: '3.0.3'
+info:
+  title: Healing Oasis API Specification
+  version: '1.0'
+servers:
+  - url: http://127.0.0.1:8000/api/v1/back-office
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  default: john@example.com
+                password:
+                  type: string
+                  default: password
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: The provided credentials do not match our records.
+  /auth/logout:
+    post:
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      responses:
+        204:
+          $ref: '#/components/responses/204'
+        401:
+          $ref: '#/components/responses/401'
+  /auth/me:
+    get:
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+        401:
+          $ref: '#/components/responses/401'
+  /auth/forgot-password:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  default: 'johndoe@healingoasis.com.sg'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: 'Please check your email at johndoe@carchoice.com.'
+  /auth/validate-otp:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - otp
+              properties:
+                otp:
+                  type: string
+                  default: '123456'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+  /auth/reset-password/{id}:
+    post:
+      tags:
+        - Authentication
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: User ID
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - password
+                - password_confirmation
+              properties:
+                password:
+                  type: string
+                  default: 'password'
+                password_confirmation:
+                  type: string
+                  default: 'password'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: 'Password reset successfully.'
+        404:
+          $ref: '#/components/responses/404'
+
+  /me/profile:
+    put:
+      tags:
+        - Profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - first_name
+                - last_name
+              properties:
+                first_name:
+                  type: string
+                  default: 'John'
+                last_name:
+                  type: string
+                  default: 'Doe'
+                phone:
+                  type: string
+                  default: '+6512345678'
+                address:
+                  type: string
+                  default: '123 Fake Street, Fakeville, 12345'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/profileResource'
+  /me/change-password:
+    patch:
+      tags:
+        - Profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - current_password
+                - password
+                - password_confirmation
+              properties:
+                current_password:
+                  type: string
+                  default: 'password'
+                password:
+                  type: string
+                  default: 'password'
+                password_confirmation:
+                  type: string
+                  default: 'password'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: 'Password changed successfully.'
+
+  /teams:
+    get:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/userResource'
+                  links:
+                    $ref: '#/components/schemas/paginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/paginationMeta'
+    post:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - first_name
+                - last_name
+                - email
+                - role
+              properties:
+                first_name:
+                  type: string
+                  default: 'John'
+                last_name:
+                  type: string
+                  default: 'Doe'
+                email:
+                  type: string
+                  default: 'johndoe@healingoasis.com.sg'
+                role:
+                  type: string
+                  default: 'admin'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+  /teams/{id}:
+    get:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: User ID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+    put:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: User ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - first_name
+                - last_name
+              properties:
+                first_name:
+                  type: string
+                  default: 'John'
+                last_name:
+                  type: string
+                  default: 'Doe'
+                role:
+                  type: string
+                  default: 'admin'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+    delete:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: User ID
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          $ref: '#/components/responses/204'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer Token
+
+  responses:
+    204:
+      description: No Content
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                default: Unauthorized
+    404:
+      description: Resource Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                default: Resource not found.
+
+  schemas:
+    userResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        name:
+          type: string
+          default: 'John Doe'
+        email:
+          type: string
+          default: 'admin@healingoasis.com.sg'
+        email_verified_at:
+          type: string
+          default: null
+        role:
+          type: string
+          default: 'admin'
+        created_at:
+          type: string
+          default: '2024-01-01'
+        profile:
+          $ref: '#/components/schemas/profileResource'
+        credit:
+          $ref: '#/components/schemas/creditResource'
+        membership:
+          $ref: '#/components/schemas/membershipResource'
+        schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/scheduleResource'
+        vouchers:
+          type: array
+          items:
+            $ref: '#/components/schemas/voucherResource'
+
+    profileResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        first_name:
+          type: string
+          default: 'John'
+        last_name:
+          type: string
+          default: 'Doe'
+        phone:
+          type: string
+          default: '+6512345678'
+        address:
+          type: string
+          default: '123 Fake Street, Fakeville, 12345'
+        avatar:
+          $ref: '#/components/schemas/imageResource'
+
+    creditResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        amount:
+          type: number
+          default: 0
+
+    membershipResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        active:
+          type: boolean
+          default: true
+        expires_at:
+          type: string
+          default: '2024-01-01'
+        point:
+          $ref: '#/components/schemas/pointResource'
+
+    pointResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        amount:
+          type: number
+          default: 0
+
+    scheduleResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        session_date:
+          type: string
+          default: '2024-01-01'
+        start_time:
+          type: string
+          default: '10:00 AM'
+        end_time:
+          type: string
+          default: '11:00 AM'
+
+    categoryResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        name:
+          type: string
+          default: 'Top 3 Best Selling'
+        slug:
+          type: string
+          default: 'top-3-best-selling'
+        description:
+          type: string
+          default: 'Top 3 Best Selling'
+        image:
+          $ref: '#/components/schemas/imageResource'
+        metas:
+          type: array
+          items:
+            $ref: '#/components/schemas/metaResource'
+
+    serviceResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        name:
+          type: string
+          default: 'Signature Body Massage'
+        slug:
+          type: string
+          default: 'signature-body-massage'
+        description:
+          type: string
+          default: 'Signature Body Massage'
+        duration:
+          type: number
+          default: 30
+        price:
+          type: number
+          default: 100
+        image:
+          $ref: '#/components/schemas/imageResource'
+        metas:
+          type: array
+          items:
+            $ref: '#/components/schemas/metaResource'
+
+    voucherTypeResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        name:
+          type: string
+          default: 'Discount Voucher S$10'
+        slug:
+          type: string
+          default: 'discount-voucher-s10'
+        description:
+          type: string
+          default: 'Discount Voucher S$10'
+        type:
+          type: string
+          default: 'fixed'
+        amount:
+          type: number
+          default: 10
+        active:
+          type: boolean
+          default: true
+        validity_period:
+          type: number
+          default: 20
+        maximum_discount:
+          type: number
+          default: 100
+        minimum_purchase:
+          type: number
+          default: 100
+        price:
+          type: number
+          default: 100
+        formatted_amount:
+          type: string
+          default: 'S$10'
+        image:
+          $ref: '#/components/schemas/imageResource'
+
+    voucherResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        detail:
+          $ref: '#/components/schemas/voucherTypeResource'
+        expires_at:
+          type: string
+          default: '2024-01-01'
+
+    creditTransactionResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        type:
+          type: string
+          default: 'add'
+        amount:
+          type: number
+          default: 100
+        status:
+          type: string
+          default: 'paid'
+        created_at:
+          type: string
+          default: '2024-01-01'
+        detail:
+          oneOf:
+            - type: object
+              properties:
+                description:
+                  type: string
+                  default: 'Top Up'
+            - $ref: '#/components/schemas/bookingTransactionResource'
+        user:
+          $ref: '#/components/schemas/userResource'
+
+    pointTransactionResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        type:
+          type: string
+          default: 'add'
+        amount:
+          type: number
+          default: 100
+        status:
+          type: string
+          default: 'paid'
+        created_at:
+          type: string
+          default: '2024-01-01'
+        detail:
+          oneOf:
+            - $ref: '#/components/schemas/voucherResource'
+            - $ref: '#/components/schemas/bookingTransactionResource'
+        membership:
+          $ref: '#/components/schemas/membershipResource'
+
+    bookingTransactionResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        detail:
+          $ref: '#/components/schemas/serviceResource'
+        voucher:
+          $ref: '#/components/schemas/voucherResource'
+        amount:
+          type: number
+          default: 100
+        payment_method:
+          type: string
+          default: 'credit'
+        code:
+          type: string
+          default: 'HO0000000000ABC'
+        status:
+          type: string
+          default: 'unpaid'
+        session_date:
+          type: string
+          default: '2024-01-01'
+        start_time:
+          type: string
+          default: '10:00 AM'
+        end_time:
+          type: string
+          default: '11:00 AM'
+        therapist:
+          $ref: '#/components/schemas/userResource'
+        created_at:
+          type: string
+          default: '2024-01-01'
+        updated_at:
+          type: string
+          default: '2024-01-01'
+
+    rescheduleRequestResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        session_date:
+          type: string
+          default: '2024-01-01'
+        start_time:
+          type: string
+          default: '10:00 AM'
+        end_time:
+          type: string
+          default: '11:00 AM'
+        therapist:
+          $ref: '#/components/schemas/userResource'
+        status:
+          type: string
+          default: 'requested'
+        user:
+          $ref: '#/components/schemas/userResource'
+        bookingTransaction:
+          $ref: '#/components/schemas/bookingTransactionResource'
+
+    imageResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        url:
+          type: string
+          default: 'http://127.0.0.1:8000/storage/image.png'
+
+    metaResource:
+      type: object
+      properties:
+        id:
+          type: string
+          default: '00000000-0000-0000-0000-000000000000'
+        key:
+          type: string
+          default: 'key'
+        value:
+          type: string
+          default: 'value'
+        content:
+          type: string
+          default: 'content'
+
+    # Pagination Related
+    paginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          default: http://127.0.0.1:8000/api/v1/services?page=1
+        last:
+          type: string
+          default: http://127.0.0.1:8000/api/v1/services?page=1
+        prev:
+          type: string
+          default: null
+          nullable: true
+        next:
+          type: string
+          default: null
+          nullable: true
+
+    paginationMeta:
+      type: object
+      properties:
+        current_page:
+          type: number
+          default: 1
+        from:
+          type: number
+          default: 1
+        last_page:
+          type: number
+          default: 1
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                default: http://127.0.0.1:8000/api/v1/services?page=1
+                nullable: true
+              label:
+                type: string
+                default: '&laquo; Previous'
+              active:
+                type: boolean
+        path:
+          type: string
+          default: http://127.0.0.1:8000/api/v1/services
+        per_page:
+          type: number
+          default: 10
+        to:
+          type: number
+          default: 1
+        total:
+          type: number
+          default: 1
