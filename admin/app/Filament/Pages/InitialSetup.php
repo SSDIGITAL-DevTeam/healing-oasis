@@ -42,12 +42,7 @@ class InitialSetup extends SimplePage
                                 ->maxLength(255),
 
                             Forms\Components\Select::make('business_type')
-                                ->options(
-                                    array_map(
-                                        fn (string $value): string => str($value)->title()->value(),
-                                        BusinessType::toArray(),
-                                    )
-                                )
+                                ->options(BusinessType::toArray())
                                 ->required(),
 
                             Forms\Components\FileUpload::make('business_logo')
@@ -56,8 +51,7 @@ class InitialSetup extends SimplePage
                                 ->rules(['image', 'dimensions:ratio=1/1'])
                                 ->disk('public')
                                 ->directory('business_logos')
-                                ->hintIcon('heroicon-o-information-circle')
-                                ->hintIconTooltip('The image file must be equal dimensions (e.g., square or a 1:1 aspect ratio)'),
+                                ->helperText('The image file must be equal dimensions (e.g., square or a 1:1 aspect ratio)'),
 
                             PhoneInput::make('business_phone')
                                 ->required()
