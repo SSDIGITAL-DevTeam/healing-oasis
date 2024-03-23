@@ -13,6 +13,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 
 /**
@@ -54,12 +55,7 @@ class Settings extends Page
                             ->maxLength(255),
 
                         Forms\Components\Select::make('business_type')
-                            ->options(
-                                array_map(
-                                    fn (string $value): string => str($value)->title()->value(),
-                                    BusinessType::toArray(),
-                                )
-                            )
+                            ->options(BusinessType::toArray())
                             ->required(),
 
                         Forms\Components\FileUpload::make('business_logo')
@@ -99,9 +95,18 @@ class Settings extends Page
 
                         unset($data['location']);
 
+                        $oldSettingImage = null;
+                        $storage = Storage::disk('public');
+
                         foreach ($data as $key => $value) {
+                            if ($key === 'business_logo') {
+                                $oldSettingImage = Setting::where('key', $key)->first()?->value ?? '';
+                            }
+
                             Setting::where('key', $key)->update(['value' => $value]);
                         }
+
+                        $oldSettingImage !== $data['business_logo'] && $storage->exists($oldSettingImage) && $storage->delete($oldSettingImage);
 
                         Notification::make('updated')
                             ->success()

@@ -6,25 +6,32 @@ namespace App\Enums;
 
 use App\Enums\Contracts\HasValues;
 use App\Enums\Traits\InteractsWithValues;
+use Closure;
 
 enum BusinessType: string implements HasValues
 {
     use InteractsWithValues;
 
-    case Spa = 'spa';
-    case CarWash = 'car wash';
-    case Barbershop = 'barbershop';
-    case BeautyClinic = 'beauty clinic';
-    case Vet = 'vet';
+    case SpaAndWellnessCenters = 'Spa and Wellness Centers';
+    case MedicalAndHealthCare = 'Medical and Healthcare';
+    case SalonAndBarbershop = 'Salons and Barbershops';
+    case FitnessStudiosAndGym = 'Fitness Studios and Gyms';
+    case PhotographyStudios = 'Photography Studios';
+    case PetClinic = 'Pet Clinic';
 
     public static function toArray(): array
     {
-        return [
-            self::Spa->value => str(self::Spa->value)->title()->value(),
-            self::CarWash->value => str(self::CarWash->value)->title()->value(),
-            self::Barbershop->value => str(self::Barbershop->value)->title()->value(),
-            self::BeautyClinic->value => str(self::BeautyClinic->value)->title()->value(),
-            self::Vet->value => str(self::Vet->value)->title()->value(),
-        ];
+        return static::normalize(function (array $types, array $normalizedType): array {
+            foreach ($types as $type) {
+                $normalizedType[$type->value] = $type->value;
+            }
+
+            return $normalizedType;
+        });
+    }
+
+    protected static function normalize(Closure $closure): mixed
+    {
+        return $closure(self::cases(), []);
     }
 }
