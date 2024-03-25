@@ -43,10 +43,10 @@ class InitialSetup extends SimplePage
 
                             Forms\Components\Select::make('business_type')
                                 ->options(BusinessType::toArray())
+                                ->native(false)
                                 ->required(),
 
                             Forms\Components\FileUpload::make('business_logo')
-                                ->required()
                                 ->image()
                                 ->rules(['image', 'dimensions:ratio=1/1'])
                                 ->disk('public')
@@ -61,7 +61,8 @@ class InitialSetup extends SimplePage
                                 ->label('Business Location')
                                 ->required(),
                         ])
-                        ->description('Enter your business information'),
+                        ->description('Enter your business information')
+                        ->icon('heroicon-o-building-office-2'),
 
                     Forms\Components\Wizard\Step::make('Super Admin')
                         ->schema([
@@ -90,7 +91,8 @@ class InitialSetup extends SimplePage
                                 ->rule(Password::default())
                                 ->same('password'),
                         ])
-                        ->description('Enter your super admin information'),
+                        ->description('Enter your super admin information')
+                        ->icon('heroicon-o-user'),
                 ])
                     ->submitAction(new HtmlString(Blade::render(<<<BLADE
                     <x-filament::button

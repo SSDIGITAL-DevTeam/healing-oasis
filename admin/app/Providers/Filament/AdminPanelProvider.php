@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Http\Middleware\HasInitialSetup;
+use App\Models\Setting;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -23,12 +24,22 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $settings = Setting::all(['key', 'value']);
+
         return $panel
             ->default()
             ->sidebarCollapsibleOnDesktop()
             ->id('admin')
             ->path('/')
-            ->brandName('Service Booking System')
+            ->when($settings->firstWhere('key', 'business_logo')?->value ?? false, function (Panel $panel, string $path): Panel {
+                return $panel->brandLogo(function () use ($path): string {
+                    return asset('storage/' . $path);
+                });
+            }, function (Panel $panel) use ($settings): Panel {
+                return $panel->brandName(function () use ($settings): ?string {
+                    return $settings->firstWhere('key', 'business_name')?->value ?? 'Service Booking System';
+                });
+            })
             ->login()
             ->passwordReset()
             ->profile(isSimple: false)

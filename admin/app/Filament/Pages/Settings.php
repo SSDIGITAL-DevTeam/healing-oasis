@@ -56,10 +56,10 @@ class Settings extends Page
 
                         Forms\Components\Select::make('business_type')
                             ->options(BusinessType::toArray())
+                            ->native(false)
                             ->required(),
 
                         Forms\Components\FileUpload::make('business_logo')
-                            ->required()
                             ->image()
                             ->rules(['image', 'dimensions:ratio=1/1'])
                             ->disk('public')
