@@ -1,38 +1,45 @@
 'use client'
 
-import { Button } from '@nextui-org/react'
-import { JSX } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import Logo from '../Logo'
 import Link from 'next/link'
-import { navlinks } from '@/constants'
+import { WHATSAPP_LINK, navlinks } from '@/constants'
 import { NavLink } from '@/types'
-// import AssetPhone from '@/assets/LandingPage/svg/asset-phone-footer.svg'
-// import AssetMail from '@/assets/LandingPage/svg/asset-mail-footer.svg'
-// import AssetAddress from '@/assets/LandingPage/svg/asset-map-footer.svg'
-import ScrollSpy from '../ScrollToTop/ScrollSpy'
 import { Link as LinkSpy } from 'react-scroll'
+import { Image } from '@nextui-org/react'
+import Whatsapp from '@/assets/LandingPage/svg/whatsapp.svg'
+import AssetPhone from '@/assets/LandingPage/svg/asset-phone-footer.svg'
+import AssetMail from '@/assets/LandingPage/svg/asset-mail-footer.svg'
+import AssetAddress from '@/assets/LandingPage/svg/asset-map-footer.svg'
 
 export default function LandingPageFooter(): JSX.Element {
+    // state
+    const [scrollTop, setScrollTop] = useState<number>(0)
+
+    // useeffect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollTop(window.scrollY)
+        }
+
+        window.addEventListener('scroll', handleScroll)
+    }, [])
+
     return (
         <footer className='bg-highlight text-primary'>
             <div className='container space-y-8 p-6 sm:p-8'>
                 <div className='flex flex-col items-center gap-8 lg:flex-row lg:justify-between'>
                     <div className='space-y-6 text-center lg:text-left'>
                         <p className='max-w-3xl text-xl font-semibold italic lg:text-2xl'>
-                            Renew your vitality and rejuvenate your energy at Healing Oasis, where tranquility merges
-                            with expert care, offering you a haven of relaxation.
+                            Recharge your Energy, Rejuvenate Your Body, Revitalize Your Mind.
                         </p>
                     </div>
-
-                    <Button className='w-44 lg:w-max' size='lg' color='secondary' radius='full'>
-                        <ScrollSpy to='/contact-us'>Book Now</ScrollSpy>
-                    </Button>
                 </div>
 
                 <hr className='border-light' />
 
-                <div className='flex flex-col gap-8 xl:flex-row'>
-                    <div className='flex flex-col items-center gap-6 md:flex-row md:justify-between'>
+                <div className='flex flex-col gap-8 xl:flex-row xl:justify-between'>
+                    <div className='flex flex-col items-center gap-6 md:flex-row md:justify-between lg:gap-28'>
                         <Link href={'/'}>
                             <Logo className='w-36' transparent />
                         </Link>
@@ -55,7 +62,7 @@ export default function LandingPageFooter(): JSX.Element {
                         </ul>
                     </div>
 
-                    {/* <ul className='mx-auto flex flex-col items-center gap-y-4 text-center font-medium xl:items-start'>
+                    <ul className='mx-auto flex flex-col items-center gap-y-4 text-center font-medium xl:items-start'>
                         <li>
                             <div className='flex items-center gap-x-2'>
                                 <img src={AssetPhone.src} alt='Phone' />
@@ -87,12 +94,31 @@ export default function LandingPageFooter(): JSX.Element {
                                 <address>Tanjong Pagar Plaza BLK 1 #01-47, Singapore (082001)</address>
                             </div>
                         </li>
-                    </ul> */}
+                    </ul>
                 </div>
             </div>
 
             <div className='bg-secondary p-6 sm:p-8'>
                 <p className='text-center text-light'>@2024 HEALING OASIS. All Rights Reserved</p>
+            </div>
+
+            {/* whatsapp */}
+            <div>
+                <a
+                    id='whatsapp-cta'
+                    aria-label='The Healing Loft'
+                    href={WHATSAPP_LINK}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={`${
+                        scrollTop > 0 ? 'scale-100' : 'scale-0'
+                    } fixed bottom-6 right-4 z-40 rounded-full bg-[#25d366] px-3 py-2.5 text-white shadow-lg duration-200 hover:scale-105 hover:bg-[#075e54] hover:text-white lg:right-6 lg:p-4 lg:py-2`}
+                >
+                    <div className='flex items-center gap-x-2 font-semibold'>
+                        <Image src={Whatsapp.src} width={28} height={28} alt='WhatsApp' />
+                        <span className='hidden lg:inline'>Book Via WhatsApp</span>
+                    </div>
+                </a>
             </div>
         </footer>
     )

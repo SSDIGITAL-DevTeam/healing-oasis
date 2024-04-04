@@ -10,11 +10,24 @@
     }
 
     h1 {
-        @apply text-4xl font-semibold lg:text-5xl;
+        @apply text-4xl font-semibold lg:text-6xl;
     }
 
     h2 {
-        @apply text-4xl font-bold md:text-4xl lg:text-5xl;
+        @apply text-3xl font-bold md:text-4xl lg:text-5xl;
+    }
+
+    table {
+        @apply text-primary;
+    }
+
+    th,
+    td {
+        @apply p-4 text-lg font-bold lg:text-2xl;
+    }
+
+    tr {
+        @apply border-b p-4 last:border-none;
     }
 }
 

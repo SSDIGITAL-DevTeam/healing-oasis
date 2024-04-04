@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/image'
-import AssetAdvantage1 from '@/assets/LandingPage/webp/asset-hero-landing-page.webp'
+import AssetAdvantage1 from '@/assets/LandingPage/webp/asset-advantage-1.webp'
 import AssetAdvantage2 from '@/assets/LandingPage/webp/asset-advantage-2.webp'
 import AssetAdvantage3 from '@/assets/LandingPage/webp/asset-advantage-3.webp'
 
@@ -12,18 +12,19 @@ export type Advantage = {
 export const advantages: Advantage[] = [
     {
         image: AssetAdvantage1,
-        name: 'Tranquil Spaces ',
-        content: 'Immerse yourself in the serenity of our clean and inviting environment.',
+        name: 'Clean and Hygiene',
+        content: 'Exemplary Cleanliness and Uncompromising Hygiene Standards Ensured Throughout Every Service.',
     },
     {
         image: AssetAdvantage2,
-        name: 'Dedicated Therapists',
-        content: 'Our dedicated therapists are devoted to provide heartfelt service.',
+        name: 'Certified Professional Therapist',
+        content:
+            'Our Team Comprises Highly Skilled and Certified Professional Therapists, Dedicated to Providing Exceptional Care.',
     },
     {
         image: AssetAdvantage3,
-        name: 'Gateway to Vitality',
+        name: 'Most Complete Services',
         content:
-            'A range of services guaranteed to leave you refreshed and prepared for whatever life throws your way.',
+            'Enjoy a Wide Range of Services Tailored to Meet Your Every Need, Ensuring You Experience the Most Complete and Gratifying Wellness Journey.',
     },
 ]

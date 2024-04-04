@@ -10,7 +10,7 @@ export default function AdvantageCard({ advantage }: Props): JSX.Element {
     return (
         <div className='flex flex-col items-center justify-center gap-y-6 text-center'>
             <Image
-                className='mx-auto md:max-w-[80%]'
+                className='aspect-video object-cover'
                 isBlurred
                 loading='lazy'
                 src={advantage.image.src}
@@ -18,9 +18,9 @@ export default function AdvantageCard({ advantage }: Props): JSX.Element {
             />
 
             <header className='space-y-4 text-primary'>
-                <h3 className='text-xl font-bold md:text-3xl'>{advantage.name}</h3>
+                <h3 className='text-xl font-bold md:text-2xl'>{advantage.name}</h3>
 
-                <p className='md:text-2xl'>{advantage.content}</p>
+                <p className=''>{advantage.content}</p>
             </header>
 
             <hr className='mt-4 w-full max-w-xs border border-primary' />
