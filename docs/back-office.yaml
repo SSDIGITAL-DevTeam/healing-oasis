@@ -34,9 +34,6 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/userResource'
-                  token:
-                    type: string
-                    default: '{token}'
         401:
           description: Unauthorized
           content:
@@ -166,21 +163,34 @@ paths:
                     default: 'Password reset successfully.'
         404:
           $ref: '#/components/responses/404'
-  /auth/refresh-token:
-    post:
+
+  /me/profile:
+    put:
       tags:
-        - Authentication
+        - Profile
+      security:
+        - bearerAuth: []
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
               type: object
               required:
-                - refresh_token
+                - first_name
+                - last_name
               properties:
-                refresh_token:
+                first_name:
                   type: string
-                  default: '{refresh_token}'
+                  default: 'John'
+                last_name:
+                  type: string
+                  default: 'Doe'
+                phone:
+                  type: string
+                  default: '+6512345678'
+                address:
+                  type: string
+                  default: '123 Fake Street, Fakeville, 12345'
       responses:
         200:
           description: OK
@@ -189,11 +199,183 @@ paths:
               schema:
                 type: object
                 properties:
-                  token:
+                  data:
+                    $ref: '#/components/schemas/profileResource'
+  /me/change-password:
+    patch:
+      tags:
+        - Profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - current_password
+                - password
+                - password_confirmation
+              properties:
+                current_password:
+                  type: string
+                  default: 'password'
+                password:
+                  type: string
+                  default: 'password'
+                password_confirmation:
+                  type: string
+                  default: 'password'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
                     type: string
-                    default: '{token}'
-        401:
-          $ref: '#/components/responses/401'
+                    default: 'Password changed successfully.'
+
+  /teams:
+    get:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/userResource'
+                  links:
+                    $ref: '#/components/schemas/paginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/paginationMeta'
+    post:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - first_name
+                - last_name
+                - email
+                - role
+              properties:
+                first_name:
+                  type: string
+                  default: 'John'
+                last_name:
+                  type: string
+                  default: 'Doe'
+                email:
+                  type: string
+                  default: 'johndoe@healingoasis.com.sg'
+                role:
+                  type: string
+                  default: 'admin'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+  /teams/{id}:
+    get:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: User ID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+    put:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: User ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - first_name
+                - last_name
+              properties:
+                first_name:
+                  type: string
+                  default: 'John'
+                last_name:
+                  type: string
+                  default: 'Doe'
+                role:
+                  type: string
+                  default: 'admin'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/userResource'
+    delete:
+      tags:
+        - Teams
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: User ID
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          $ref: '#/components/responses/204'
 
 components:
   securitySchemes:
@@ -412,6 +594,15 @@ components:
         validity_period:
           type: number
           default: 20
+        maximum_discount:
+          type: number
+          default: 100
+        minimum_purchase:
+          type: number
+          default: 100
+        price:
+          type: number
+          default: 100
         formatted_amount:
           type: string
           default: 'S$10'
