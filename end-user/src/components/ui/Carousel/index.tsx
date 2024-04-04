@@ -3,8 +3,7 @@
 import * as React from 'react'
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
-import { cn } from '@nextui-org/react'
-import { Button } from './Button'
+import { Button, cn } from '@nextui-org/react'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -171,7 +170,7 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 CarouselItem.displayName = 'CarouselItem'
 
 const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-    ({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+    ({ className, variant = 'solid', size = 'lg', ...props }, ref) => {
         const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
         return (
@@ -179,14 +178,15 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
                 ref={ref}
                 variant={variant}
                 size={size}
+                isIconOnly
                 className={cn(
                     'absolute h-8 w-8 rounded-full lg:h-12 lg:w-12',
                     orientation === 'horizontal'
-                        ? '-left-4 top-1/2 -translate-y-1/2 lg:-top-10 lg:left-[calc(100%-2rem)] lg:-translate-x-24'
+                        ? '-left-4 top-1/2 -translate-y-1/2'
                         : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
                     className,
                 )}
-                disabled={!canScrollPrev}
+                isDisabled={!canScrollPrev}
                 onClick={scrollPrev}
                 {...props}
             >
@@ -199,7 +199,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
 CarouselPrevious.displayName = 'CarouselPrevious'
 
 const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-    ({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+    ({ className, variant = 'solid', size = 'lg', ...props }, ref) => {
         const { orientation, scrollNext, canScrollNext } = useCarousel()
 
         return (
@@ -207,14 +207,15 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
                 ref={ref}
                 variant={variant}
                 size={size}
+                isIconOnly
                 className={cn(
                     'absolute h-8 w-8 rounded-full lg:h-12 lg:w-12',
                     orientation === 'horizontal'
-                        ? '-right-4 top-1/2 -translate-y-1/2 lg:-top-10 lg:right-4'
+                        ? '-right-4 top-1/2 -translate-y-1/2'
                         : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
                     className,
                 )}
-                disabled={!canScrollNext}
+                isDisabled={!canScrollNext}
                 onClick={scrollNext}
                 {...props}
             >

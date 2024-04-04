@@ -3,7 +3,6 @@ import { JSX, ReactNode } from 'react'
 import { Providers } from './providers'
 import LandingPageNavbar from '@/components/Navbar/LandingPageNavbar'
 import LandingPageFooter from '@/components/Footer/LandingPageFooter'
-import ScrollToTop from '@/components/ScrollToTop'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -35,8 +34,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
                     {children}
 
                     <LandingPageFooter />
-
-                    <ScrollToTop />
                 </Providers>
             </body>
         </html>

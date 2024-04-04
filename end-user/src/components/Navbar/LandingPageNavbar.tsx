@@ -16,10 +16,10 @@ export default function LandingPageNavbar(): JSX.Element {
     const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false)
 
     return (
-        <nav className='container absolute inset-x-0 z-50 p-2.5 md:p-4 lg:mt-8'>
+        <nav className='container absolute inset-x-0 z-50 p-2.5 md:p-8 lg:mt-8'>
             <div className='flex items-center justify-between rounded-2xl p-4'>
                 <Link href={'/'}>
-                    <Logo className='w-24' />
+                    <Logo className='w-24 lg:w-28' dark />
                 </Link>
 
                 <ul className='hidden items-center gap-x-4 rounded-full bg-highlight/25 px-8 py-4 font-medium text-white lg:flex'>

@@ -11,7 +11,7 @@ type Props = {
 export default function ScrollSpy({ children, to }: Props): JSX.Element {
     return (
         <Link
-            className='flex h-full w-full items-center justify-center rounded-full'
+            className='flex h-full items-center justify-center'
             spy={true}
             smooth={true}
             offset={0}
