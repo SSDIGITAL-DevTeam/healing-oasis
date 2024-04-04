@@ -126,7 +126,7 @@ export default function Home(): JSX.Element {
                     <header className='relative mb-8 space-y-4 text-center text-primary lg:max-w-lg lg:text-left'>
                         {/* absolute image */}
                         <div className='flex flex-col items-center gap-6 lg:flex-row lg:gap-8'>
-                            <h2 className='uppercase'>By 1 Get 3</h2>
+                            <h2 className='uppercase'>Buy 1 Get 3</h2>
 
                             <img className='w-24 lg:w-max' src={AssetSection2_1.src} alt='1 get 3' />
                         </div>
