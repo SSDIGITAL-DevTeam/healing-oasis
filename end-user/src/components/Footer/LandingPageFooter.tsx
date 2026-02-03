@@ -162,7 +162,9 @@ export default function LandingPageFooter(): JSX.Element {
                 <img src={AssetAddress.src} alt="Address" />
 
                 <address>
-                  1 Tanjong Pagar Plz, #01-47, Singapura (082001)
+                  <a href="https://maps.app.goo.gl/qLTMFnXwh5cXJDKZ8">
+                    1 Tanjong Pagar Plz, #01-47, Singapura (082001)
+                  </a>
                 </address>
               </div>
             </li>

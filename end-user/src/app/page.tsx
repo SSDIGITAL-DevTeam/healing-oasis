@@ -349,9 +349,12 @@ export default function Home(): JSX.Element {
                 Address
               </p>
 
-              <p className="mt-8 max-w-xs text-center text-primary">
+              <a
+                href="https://maps.app.goo.gl/qLTMFnXwh5cXJDKZ8"
+                className="mt-8 block max-w-xs text-center text-primary"
+              >
                 1 Tanjong Pagar Plz, #01-47, Singapura (082001)
-              </p>
+              </a>
             </div>
 
             <div className="border-b border-primary lg:border-r"></div>
